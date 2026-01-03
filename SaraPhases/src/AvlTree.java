@@ -8,7 +8,7 @@ public class AvlTree {
         return node.height;
     }
     
-    public int Balanced(Node node){
+    public int balanced(Node node){
         if(node == null){return -1;}
         return height(node.left) - height(node.right);
     }
