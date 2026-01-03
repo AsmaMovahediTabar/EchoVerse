@@ -1,10 +1,10 @@
 package src;
 
 public class Node {
-    private int chanelIDE;
-    private Node left;
-    private Node right;
-    private int height;
+    int chanelIDE;
+    Node left;
+    Node right;
+    int height;
     
     public Node(int IDE){
         this.chanelIDE = IDE;
