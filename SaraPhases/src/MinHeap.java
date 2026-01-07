@@ -41,9 +41,73 @@ public class MinHeap {
         heap[size] = new HeapNode(ID , priority);
         int s = size;
         size++;
-        while(s != 0 && heap[parent(s)].Priority > heap[s].Priority){
+        while(s != 0 && heap[parent(s)].priority > heap[s].priority){
             swap(s , parent(s));
             s = parent(s);
-        }g
+        }
+    }
+    
+    public HeapNode extractMin(){
+            if (size <= 0){return null;}
+            if (size == 1){
+                size--;
+                return heap[0];
+            }
+            HeapNode root = heap[0];
+            heap[0] = heap[size - 1];
+            size--;
+            downHeap(0);
+            return root;
+        
+    }
+    
+    public void downHeap(int i){
+        int l = left(i);
+        int r = right(i);
+        int small = i;
+        if (l < size && heap[l].priority < heap[small].priority){small = l;}
+        if (r < size && heap[r].priority < heap[small].priority){small = r;}
+        if (small != i){
+            swap(i, small);
+            downHeap(small);
+        }
+    }
+    
+    public void delete(int ID){
+        int index = -1;
+        for(int i = 0 ; i < size ; i++){
+            if(heap[i].ID == ID){
+                index = i;
+                break;
+            }
+        }
+        if(index == -1){
+            System.out.println("The episode not found");
+            return;
+        }
+        heap[index] = heap[size -1];
+        size--;
+        downHeap(index);
+    }
+
+    public void disPlay(){
+        for (int i = 0; i < size; i++) {
+            System.out.print(heap[i].ID + "(" + heap[i].priority + ") ");
+        }
+    }
+
+    public void heapSort(){
+        int originalSize = size;
+
+        while (size > 1) {
+            swap(0, size - 1);
+            size--;
+            downHeap(0);
+        }
+        size = originalSize;
+        System.out.println("Sorted episodes by priority:");
+        for (int i = 0; i < size; i++) {
+                System.out.print(heap[i].ID + "(" + heap[i].priority + ") ");
+        }
     }
 }
