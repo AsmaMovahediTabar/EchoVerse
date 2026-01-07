@@ -1,4 +1,4 @@
-package src;
+package src.phase1;
 
 public class AvlTree {
     private Node root;

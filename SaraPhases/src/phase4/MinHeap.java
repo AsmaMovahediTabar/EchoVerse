@@ -1,4 +1,4 @@
-package src;
+package src.phase4;
 
 public class MinHeap {
     private HeapNode[] heap;
@@ -29,7 +29,7 @@ public class MinHeap {
         heap[j] = temp;
     }
     
-    public void insert(int ID , int priority){
+    public void insert(String ID , int priority){
         if(capacity == size){
             HeapNode[] newHeap = new HeapNode[heap.length * 2];
 
@@ -73,10 +73,10 @@ public class MinHeap {
         }
     }
     
-    public void delete(int ID){
+    public void delete(String ID){
         int index = -1;
         for(int i = 0 ; i < size ; i++){
-            if(heap[i].ID == ID){
+            if(heap[i].ID.equals(ID)){
                 index = i;
                 break;
             }
@@ -91,6 +91,10 @@ public class MinHeap {
     }
 
     public void disPlay(){
+        if (size == 0) {
+            System.out.println("Heap is empty!");
+            return;
+        }
         for (int i = 0; i < size; i++) {
             System.out.print(heap[i].ID + "(" + heap[i].priority + ") ");
         }
