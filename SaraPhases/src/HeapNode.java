@@ -2,10 +2,10 @@ package src;
 
 public class HeapNode{
     int ID;
-    int Priority;
+    int priority;
     
     public HeapNode(int ID , int priority){
         this.ID = ID;
-        this.Priority = priority;
+        this.priority = priority;
     }
 }
