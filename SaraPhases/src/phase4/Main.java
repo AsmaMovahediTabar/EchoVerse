@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         MinHeap heap = new MinHeap(50);
         while (true) {
             System.out.println("\n--- Episode Release Queue (Min-Heap) ---");
@@ -16,13 +16,13 @@ public class Main {
             System.out.println("5. Heap sort");
             System.out.println("0. Exit");
             System.out.print("Choose: ");
-            int choice = sc.nextInt();
+            int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     System.out.print("Enter episode ID: ");
-                    String ID = sc.next();
+                    String ID = scanner.next();
                     System.out.print("Enter priority: ");
-                    int priority = sc.nextInt();
+                    int priority = scanner.nextInt();
                     heap.insert(ID, priority);
                     break;
                 case 2:
@@ -36,7 +36,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.print("Enter episode ID to delete: ");
-                    String deleteID = sc.next();
+                    String deleteID = scanner.next();
                     heap.delete(deleteID);
                     break;
                 case 4:
