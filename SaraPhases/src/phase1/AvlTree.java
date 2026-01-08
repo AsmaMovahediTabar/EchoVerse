@@ -35,26 +35,26 @@ public class AvlTree {
 
     public Node insert(Node node , int channelID){
         if(node == null){return new Node(channelID);}
-        if(channelID > node.chanelIDE){
+        if(channelID > node.channelID){
             node.right = insert(node.right , channelID);
         }
-        else if(channelID < node.chanelIDE){
+        else if(channelID < node.channelID){
             node.left = insert(node.left , channelID);
         }
-        else{  return node;}
+        else{return node;}
         node.height = 1 + Math.max(height(node.left) , height(node.right));
         int balance = balanced(node);
-        if (balance > 1 && channelID < node.left.chanelIDE) {
+        if (balance > 1 && channelID < node.left.channelID) {
             return rightRotate(node);
         }
-        if (balance < -1 && channelID > node.right.chanelIDE) {
+        if (balance < -1 && channelID > node.right.channelID) {
             return leftRotate(node);
         }
-        if (balance > 1 && channelID > node.left.chanelIDE) {
+        if (balance > 1 && channelID > node.left.channelID) {
             node.left = leftRotate(node.left);
             return rightRotate(node);
         }
-        if (balance < -1 && channelID < node.right.chanelIDE) {
+        if (balance < -1 && channelID < node.right.channelID) {
             node.right = rightRotate(node.right);
             return leftRotate(node);
         }
@@ -67,8 +67,8 @@ public class AvlTree {
 
     public boolean search(Node node , int channelID){
         if(node == null){return false;}
-        if(channelID == node.chanelIDE){return true;}
-        if(channelID > node.chanelIDE){return search(node.right , channelID);}
+        if(channelID == node.channelID){return true;}
+        if(channelID > node.channelID){return search(node.right , channelID);}
         return search(node.left , channelID);
     }
 
@@ -86,21 +86,22 @@ public class AvlTree {
 
     public Node delete(Node node , int channelID){
         if(node == null){return node;}
-        if(channelID > node.chanelIDE){node.right = delete(node.right , channelID);}
-        else if(channelID < node.chanelIDE){node.left = delete(node.left , channelID);}
+        if(channelID > node.channelID){node.right = delete(node.right , channelID);}
+        else if(channelID < node.channelID){node.left = delete(node.left , channelID);}
         else{
             if(node.left == null || node.right == null){
-                root = (node.left != null) ? node.left : node.right;
+                Node temp = (node.left != null) ? node.left : node.right;
+                return temp;
             }
             else{
-                Node temp = minValueNodeInRightSubtree(root.right);
-                root.chanelIDE = temp.chanelIDE;
-                root.right = delete(root.right , temp.chanelIDE);
+                Node temp = minValueNodeInRightSubtree(node.right);
+                node.channelID = temp.channelID;
+                node.right = delete(node.right , temp.channelID);
             }
         }
-        if(root == null){return root;}
+        if(node == null){return node;}
         node.height = 1 + Math.max(height(node.left) , height(node.right));
-        int balance = balanced(root);
+        int balance = balanced(node);
         if (balance > 1 && balanced(node.left) >= 0){
             return rightRotate(node);
         }
@@ -119,5 +120,38 @@ public class AvlTree {
 
     public void delete(int channelID){
         root = delete(root , channelID);
+    }
+    
+    public void disPlay(){
+        if(root == null){
+            System.out.println("Is empty!");
+            return;
+        }
+        disPlay(root);
+    }
+    
+    public void disPlay(Node node){
+        if (node == null) {
+            return;
+        }
+        if(node.left == null && node.right == null){
+            return;
+        }
+        System.out.print(node.channelID + " ");
+        if (node.left != null) {
+            System.out.print(node.left.channelID);
+        } else {
+            System.out.print("-1");
+        }
+        System.out.print(",");
+
+        if (node.right != null) {
+            System.out.print(node.right.channelID);
+        } else {
+            System.out.print("-1");
+        }
+        System.out.println();
+        disPlay(node.left);
+        disPlay(node.right);
     }
 }
