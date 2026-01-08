@@ -32,8 +32,7 @@ public class MinHeap {
     public void insert(String ID , int priority){
         if(capacity == size){
             HeapNode[] newHeap = new HeapNode[heap.length * 2];
-
-            for (int i = 0; i < heap.length; i++) {
+            for(int i = 0; i < heap.length; i++) {
                 newHeap[i] = heap[i];
             }
             heap = newHeap;
@@ -85,18 +84,19 @@ public class MinHeap {
             System.out.println("The episode not found");
             return;
         }
+        System.out.println("Episode " + heap[index].ID + " deleted");
         heap[index] = heap[size -1];
         size--;
         downHeap(index);
     }
 
     public void disPlay(){
-        if (size == 0) {
-            System.out.println("Heap is empty!");
-            return;
+        if (size == 0){ 
+            System.out.println("Heap is empty!"); 
+            return; 
         }
-        for (int i = 0; i < size; i++) {
-            System.out.print(heap[i].ID + "(" + heap[i].priority + ") ");
+        for(int i = 0; i < size; i++){ 
+            System.out.print(heap[i].ID + "(" + heap[i].priority + ") "); 
         }
     }
 
@@ -108,10 +108,11 @@ public class MinHeap {
             size--;
             downHeap(0);
         }
-        size = originalSize;
         System.out.println("Sorted episodes by priority:");
-        for (int i = 0; i < size; i++) {
+        for (int i = originalSize - 1 ; i <= 0 ; i--) {
                 System.out.print(heap[i].ID + "(" + heap[i].priority + ") ");
         }
+        System.out.println();
+        size = originalSize;
     }
 }
