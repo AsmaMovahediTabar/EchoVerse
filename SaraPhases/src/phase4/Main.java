@@ -8,14 +8,15 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         MinHeap heap = new MinHeap(50);
         while (true) {
-            System.out.println("\n--- Episode Release Queue (Min-Heap) ---");
-            System.out.println("1. Insert episode");
-            System.out.println("2. Extract min (publish episode)");
-            System.out.println("3. Delete episode by ID");
-            System.out.println("4. Display heap");
-            System.out.println("5. Heap sort");
-            System.out.println("0. Exit");
-            System.out.print("Choose: ");
+            System.out.println("\n*** Episode Release Queue ***");
+            System.out.println("*   1.Insert episode        *");
+            System.out.println("*   2.Extract min           *");
+            System.out.println("*   3.Delete episode by ID  *");
+            System.out.println("*   4.Display heap          *");
+            System.out.println("*   5.Heap sort             *");
+            System.out.println("*   0.Exit                  *");
+            System.out.println("*****************************");
+            System.out.print("Enter the desired number to perform the operation: ");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
